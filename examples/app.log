@@ -1,0 +1,20 @@
+2026-01-17 10:15:32.123 INFO [main] Application started successfully
+2026-01-17 10:16:45.456 INFO [auth] User login: user@example.com from 192.168.1.50
+2026-01-17 10:17:21.789 ERROR [database] Connection pool exhausted, retrying...
+2026-01-17 10:18:03.012 WARN [api] Rate limit exceeded for IP 192.168.1.100
+2026-01-17 10:19:15.345 INFO [cache] Cache hit ratio: 85%
+2026-01-17 10:20:42.678 ERROR [payment] Payment gateway timeout for transaction TXN12345
+2026-01-17 10:21:33.901 DEBUG [query] Executing query: SELECT * FROM users WHERE id = 1
+2026-01-17 10:22:18.234 INFO [worker] Background job completed in 1.2s
+2026-01-17 10:23:05.567 ERROR [email] Failed to send email to user@example.com: SMTP error
+2026-01-17 10:24:50.890 WARN [security] Multiple failed login attempts from 10.0.0.5
+2026-01-17 11:15:32.123 INFO [scheduler] Scheduled task executed successfully
+2026-01-17 11:16:45.456 ERROR [api] Internal server error: NullPointerException at line 234
+2026-01-17 11:17:21.789 WARN [memory] Memory usage at 90%, triggering GC
+2026-01-17 11:18:03.012 INFO [http] Request processed in 45ms
+2026-01-17 11:19:15.345 ERROR [database] Deadlock detected, transaction rolled back
+2026-01-17 12:15:32.123 INFO [backup] Database backup completed successfully
+2026-01-17 12:16:45.456 ERROR [file] Failed to write to /var/log/app.log: Disk full
+2026-01-17 12:17:21.789 WARN [connection] Connection idle for 300s, closing
+2026-01-17 12:18:03.012 INFO [metrics] CPU usage: 45%, Memory: 2.5GB/8GB
+2026-01-17 12:19:15.345 ERROR [api] Endpoint /api/v1/data returned 500 status
