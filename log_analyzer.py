@@ -88,12 +88,12 @@ class LogAnalyzer:
                 '%b %d %H:%M:%S'
             ]
             
+            # Remove milliseconds if present
+            clean_timestamp = timestamp_str.split('.')[0]
+            
             for fmt in formats:
                 try:
-                    dt = datetime.strptime(timestamp_str.split('.')[0].split()[0:2] 
-                                         if ' ' in timestamp_str 
-                                         else timestamp_str.split('.')[0], 
-                                         fmt)
+                    dt = datetime.strptime(clean_timestamp, fmt)
                     return f"{dt.hour:02d}:00"
                 except ValueError:
                     continue
@@ -371,7 +371,7 @@ class OutputGenerator:
             color: #666;
             margin-bottom: 5px;
         }}
-        .summary-item value {{
+        .summary-item .value {{
             font-size: 1.5em;
             font-weight: bold;
             color: #333;
@@ -437,27 +437,27 @@ class OutputGenerator:
         <div class="summary-grid">
             <div class="summary-item">
                 <label>Total Lines</label>
-                <value>{summary.get('total_lines', 0)}</value>
+                <span class="value">{summary.get('total_lines', 0)}</span>
             </div>
             <div class="summary-item">
                 <label>Parsed Lines</label>
-                <value>{summary.get('parsed_lines', 0)}</value>
+                <span class="value">{summary.get('parsed_lines', 0)}</span>
             </div>
             <div class="summary-item">
                 <label>Errors</label>
-                <value class="severity-error">{summary.get('total_errors', 0)}</value>
+                <span class="value severity-error">{summary.get('total_errors', 0)}</span>
             </div>
             <div class="summary-item">
                 <label>Warnings</label>
-                <value class="severity-warn">{summary.get('total_warnings', 0)}</value>
+                <span class="value severity-warn">{summary.get('total_warnings', 0)}</span>
             </div>
             <div class="summary-item">
                 <label>Info Messages</label>
-                <value class="severity-info">{summary.get('total_info', 0)}</value>
+                <span class="value severity-info">{summary.get('total_info', 0)}</span>
             </div>
             <div class="summary-item">
                 <label>Unique IPs</label>
-                <value>{summary.get('unique_ips', 0)}</value>
+                <span class="value">{summary.get('unique_ips', 0)}</span>
             </div>
         </div>
     </div>
