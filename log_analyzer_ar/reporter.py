@@ -969,12 +969,6 @@ class OutputGenerator:
                 <div class="card">
                     <div class="card-header">
                         <h2 class="card-title">Events Timeline</h2>
-                        <div class="card-actions">
-                            <button class="btn btn-sm btn-secondary" onclick="filterTimeline('1h', event)">1h</button>
-                            <button class="btn btn-sm btn-secondary" onclick="filterTimeline('6h', event)">6h</button>
-                            <button class="btn btn-sm btn-secondary" onclick="filterTimeline('24h', event)">24h</button>
-                            <button class="btn btn-sm btn-primary" onclick="filterTimeline('all', event)">All</button>
-                        </div>
                     </div>
                     <div class="chart-container" style="height: 400px;">
                         <canvas id="timelineChart"></canvas>
@@ -1251,23 +1245,6 @@ class OutputGenerator:
                 input.value = term;
                 $(input).trigger('keyup');
             }});
-        }}
-        
-        // Timeline filter
-        function filterTimeline(period, evt) {{
-            // Visual feedback
-            if (evt && evt.target) {{
-                evt.target.parentElement.querySelectorAll('.btn').forEach(b => {{
-                    b.classList.remove('btn-primary');
-                    b.classList.add('btn-secondary');
-                }});
-                evt.target.classList.remove('btn-secondary');
-                evt.target.classList.add('btn-primary');
-            }}
-            
-            // Note: Actual filtering would require re-rendering the chart with filtered data
-            // For this implementation, we show all data (static report)
-            console.log('Timeline filter:', period);
         }}
         
         // Severity filter
