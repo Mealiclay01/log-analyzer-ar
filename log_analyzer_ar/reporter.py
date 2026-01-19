@@ -1203,8 +1203,8 @@ class OutputGenerator:
         function navigateTo(section, evt) {{
             // Update active nav item
             document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-            if (evt && evt.target) {{
-                evt.target.classList.add('active');
+            if (evt && evt.currentTarget) {{
+                evt.currentTarget.classList.add('active');
             }} else {{
                 // For hash navigation, find and activate the nav item
                 document.querySelectorAll('.nav-item').forEach(item => {{
