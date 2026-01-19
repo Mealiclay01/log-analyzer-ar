@@ -1,0 +1,104 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, copilot/* ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Test on Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .
+    
+    - name: Run tests
+      run: |
+        python -m unittest discover tests/ -v
+    
+    - name: Test CLI
+      run: |
+        python -m log_analyzer_ar --version
+        python -m log_analyzer_ar --help
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+    
+    - name: Install linting tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pylint
+    
+    - name: Run flake8
+      run: |
+        flake8 log_analyzer_ar/ --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 log_analyzer_ar/ --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      continue-on-error: true
+    
+    - name: Run pylint
+      run: |
+        pylint log_analyzer_ar/ --exit-zero
+      continue-on-error: true
+
+  demo:
+    name: Build Demo Report
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+    
+    - name: Install package
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .
+    
+    - name: Run demo analysis
+      run: |
+        python -m log_analyzer_ar examples/*.log -v
+    
+    - name: Verify outputs
+      run: |
+        test -f output/analysis.json
+        test -f output/report.html
+        test -f output/summary.csv
+        echo "✅ All output files generated successfully"
+    
+    - name: Validate JSON
+      run: |
+        python -c "import json; data = json.load(open('output/analysis.json')); print(f'Analyzed {data[\"summary\"][\"total_lines\"]} lines')"
+    
+    - name: Upload demo report
+      uses: actions/upload-artifact@v3
+      with:
+        name: demo-report
+        path: output/
+        retention-days: 30
