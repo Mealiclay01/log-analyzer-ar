@@ -209,3 +209,5 @@ __marimo__/
 
 # Log Analyzer output
 output/
+custom_output/
+log_analyzer_old.py
