@@ -93,17 +93,34 @@ Generated in `output/` directory:
 - `report.html` - Interactive dashboard ⭐
 - `summary.md` - Arabic AI summary (optional)
 
-## 🎨 HTML Report
+## 🎨 Premium HTML Report
 
-Interactive report with:
-- 📊 Dashboard with stats
-- ⚠️ Auto-detected anomalies
-- 📈 Chart.js visualizations
-- 🔍 Live search/filter
-- 🌓 Dark mode toggle
-- 📱 Mobile-responsive
-- 🌍 RTL support for Arabic
-- 🔒 XSS prevention
+**Portfolio-grade interactive dashboard** with modern sidebar layout:
+
+- 📊 **Modern Sidebar Navigation** - Fixed left sidebar with 8 sections
+- 🎯 **Sticky Header** - Shows time range, files analyzed, parse rate badge
+- 📈 **6 Interactive Charts** - Chart.js (severity, timeline, status codes, IPs, endpoints)
+- 📋 **DataTables Integration** - Sortable, paginated, searchable tables
+- 🌓 **Light/Dark Theme** - System preference + toggle with localStorage
+- ⚡ **Compact Mode** - Dense tables for SOC/DevOps workflows
+- 🔍 **Global Search** - Filter across all tables
+- 🎛️ **Advanced Filters** - Severity checkboxes, timeline range
+- 🔗 **Deep Linking** - URL hash navigation (#overview, #ips, etc.)
+- 📱 **Mobile-Responsive** - Collapsible sidebar
+- 🖨️ **Print-Friendly** - Optimized for PDF export
+- 📦 **Export Section** - Download JSON/CSVs, copy paths
+- 🌍 **RTL Support** - Arabic-friendly typography
+- 🔒 **XSS Prevention** - All content escaped
+
+### View in Codespaces
+
+```bash
+# Serve the output directory
+python3 -m http.server --directory output 8000
+
+# Access in browser at:
+http://localhost:8000/report.html
+```
 
 ## 🔍 Supported Formats
 
