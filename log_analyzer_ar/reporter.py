@@ -1639,29 +1639,6 @@ class OutputGenerator:
             rows.append(f"<tr>{''.join(cells)}</tr>")
         return ''.join(rows)
     
-    def _generate_endpoints_section(self) -> str:
-        """Generate endpoints section if data exists"""
-        endpoints = self.results.get('top_endpoints', [])
-        if not endpoints:
-            return ''
-        
-        return f'''
-            <div class="card">
-                <h2>Top Endpoints</h2>
-                <table id="endpointsTable" class="searchable">
-                    <thead>
-                        <tr>
-                            <th>Endpoint</th>
-                            <th>Requests</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {self._generate_table_rows(endpoints, ['endpoint', 'count'])}
-                    </tbody>
-                </table>
-            </div>
-        '''
-    
     def _generate_endpoints_section_enhanced(self, endpoints_data: Dict) -> str:
         """Generate enhanced endpoints section with chart"""
         endpoints = self.results.get('top_endpoints', [])
