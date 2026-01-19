@@ -1,0 +1,20 @@
+Jan 17 10:15:32 webserver sshd[1234]: Failed password for invalid user admin from 192.168.1.100 port 22 ssh2
+Jan 17 10:16:45 webserver systemd[1]: Started Session 123 of user root.
+Jan 17 10:17:21 webserver kernel: Out of memory: Kill process 5678 (chrome) score 890 or sacrifice child
+Jan 17 10:18:03 webserver nginx[9012]: ERROR: Configuration file /etc/nginx/nginx.conf test failed
+Jan 17 10:19:15 webserver sshd[1235]: Accepted publickey for ubuntu from 192.168.1.50 port 22 ssh2
+Jan 17 10:20:42 webserver systemd[1]: Starting Nginx HTTP Server...
+Jan 17 10:21:33 webserver nginx[9012]: WARNING: worker_connections exceed system limits
+Jan 17 10:22:18 webserver cron[3456]: INFO: Job completed successfully
+Jan 17 10:23:05 webserver sshd[1236]: Failed password for root from 10.0.0.5 port 22 ssh2
+Jan 17 10:24:50 webserver kernel: TCP: time wait bucket table overflow
+Jan 17 11:15:32 webserver sshd[1237]: Failed password for invalid user admin from 192.168.1.100 port 22 ssh2
+Jan 17 11:16:45 webserver systemd[1]: Started Session 124 of user root.
+Jan 17 11:17:21 webserver apache2[7890]: ERROR: Cannot allocate memory
+Jan 17 11:18:03 webserver postfix[4567]: warning: database /etc/postfix/access.db is older than source file
+Jan 17 11:19:15 webserver sshd[1238]: Accepted publickey for ubuntu from 192.168.1.50 port 22 ssh2
+Jan 17 12:15:32 webserver mysql[5678]: ERROR: Cannot connect to database
+Jan 17 12:16:45 webserver systemd[1]: Starting MySQL Server...
+Jan 17 12:17:21 webserver mysql[5678]: WARNING: Slow query detected (3.5 seconds)
+Jan 17 12:18:03 webserver nginx[9012]: INFO: Server started on port 80
+Jan 17 12:19:15 webserver sshd[1239]: Failed password for root from 10.0.0.5 port 22 ssh2

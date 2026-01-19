@@ -1,0 +1,20 @@
+2026/01/17 10:15:32 [error] 1234#0: *1 connect() failed (111: Connection refused) while connecting to upstream
+2026/01/17 10:16:45 [warn] 1234#0: *2 upstream server temporarily disabled while connecting to upstream
+2026/01/17 10:17:21 [error] 1234#0: *3 open() "/var/www/html/missing.html" failed (2: No such file or directory)
+2026/01/17 10:18:03 [info] 1234#0: *4 client closed connection while waiting for request
+2026/01/17 10:19:15 [error] 1234#0: *5 FastCGI sent in stderr: "PHP message: PHP Fatal error"
+2026/01/17 10:20:42 [warn] 1234#0: *6 a client request body is buffered to a temporary file
+2026/01/17 10:21:33 [error] 1234#0: *7 recv() failed (104: Connection reset by peer)
+2026/01/17 10:22:18 [info] 1234#0: signal process started
+2026/01/17 10:23:05 [error] 1234#0: *8 SSL_do_handshake() failed (SSL: error:14094410)
+2026/01/17 10:24:50 [warn] 1234#0: *9 an upstream response is buffered to a temporary file
+2026/01/17 11:15:32 [error] 1234#0: *10 connect() failed (111: Connection refused) while connecting to upstream
+2026/01/17 11:16:45 [warn] 1234#0: *11 upstream server temporarily disabled while connecting to upstream
+2026/01/17 11:17:21 [error] 1234#0: *12 openat() "/var/www/html/" failed (13: Permission denied)
+2026/01/17 11:18:03 [info] 1234#0: *13 epoll_wait() reported that client prematurely closed connection
+2026/01/17 11:19:15 [error] 1234#0: *14 FastCGI sent in stderr: "PHP message: PHP Fatal error"
+2026/01/17 12:15:32 [error] 1234#0: *15 connect() failed (111: Connection refused) while connecting to upstream
+2026/01/17 12:16:45 [warn] 1234#0: *16 upstream prematurely closed connection while reading response header
+2026/01/17 12:17:21 [error] 1234#0: *17 open() "/var/www/html/test.html" failed (2: No such file or directory)
+2026/01/17 12:18:03 [info] 1234#0: *18 client closed keepalive connection
+2026/01/17 12:19:15 [error] 1234#0: *19 upstream timed out (110: Connection timed out)
