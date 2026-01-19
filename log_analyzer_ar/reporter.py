@@ -859,28 +859,28 @@ class OutputGenerator:
             <h3>📊 Log Analyzer</h3>
             <div class="subtitle">Analysis Report</div>
         </div>
-        <a class="nav-item active" href="#overview" onclick="navigateTo('overview')">
+        <a class="nav-item active" href="#overview" onclick="navigateTo('overview', event)">
             <span class="nav-icon">📈</span> Overview
         </a>
-        <a class="nav-item" href="#timeline" onclick="navigateTo('timeline')">
+        <a class="nav-item" href="#timeline" onclick="navigateTo('timeline', event)">
             <span class="nav-icon">📅</span> Timeline
         </a>
-        <a class="nav-item" href="#severity" onclick="navigateTo('severity')">
+        <a class="nav-item" href="#severity" onclick="navigateTo('severity', event)">
             <span class="nav-icon">⚠️</span> Severity
         </a>
-        <a class="nav-item" href="#ips" onclick="navigateTo('ips')">
+        <a class="nav-item" href="#ips" onclick="navigateTo('ips', event)">
             <span class="nav-icon">🌐</span> IP Addresses
         </a>
-        <a class="nav-item" href="#status" onclick="navigateTo('status')">
+        <a class="nav-item" href="#status" onclick="navigateTo('status', event)">
             <span class="nav-icon">📡</span> Status Codes
         </a>
-        <a class="nav-item" href="#endpoints" onclick="navigateTo('endpoints')">
+        <a class="nav-item" href="#endpoints" onclick="navigateTo('endpoints', event)">
             <span class="nav-icon">🔗</span> Endpoints
         </a>
-        <a class="nav-item" href="#messages" onclick="navigateTo('messages')">
+        <a class="nav-item" href="#messages" onclick="navigateTo('messages', event)">
             <span class="nav-icon">💬</span> Messages
         </a>
-        <a class="nav-item" href="#export" onclick="navigateTo('export')">
+        <a class="nav-item" href="#export" onclick="navigateTo('export', event)">
             <span class="nav-icon">📥</span> Export
         </a>
     </nav>
@@ -970,10 +970,10 @@ class OutputGenerator:
                     <div class="card-header">
                         <h2 class="card-title">Events Timeline</h2>
                         <div class="card-actions">
-                            <button class="btn btn-sm btn-secondary" onclick="filterTimeline('1h')">1h</button>
-                            <button class="btn btn-sm btn-secondary" onclick="filterTimeline('6h')">6h</button>
-                            <button class="btn btn-sm btn-secondary" onclick="filterTimeline('24h')">24h</button>
-                            <button class="btn btn-sm btn-primary" onclick="filterTimeline('all')">All</button>
+                            <button class="btn btn-sm btn-secondary" onclick="filterTimeline('1h', event)">1h</button>
+                            <button class="btn btn-sm btn-secondary" onclick="filterTimeline('6h', event)">6h</button>
+                            <button class="btn btn-sm btn-secondary" onclick="filterTimeline('24h', event)">24h</button>
+                            <button class="btn btn-sm btn-primary" onclick="filterTimeline('all', event)">All</button>
                         </div>
                     </div>
                     <div class="chart-container" style="height: 400px;">
@@ -1206,10 +1206,19 @@ class OutputGenerator:
         }}
         
         // Navigation
-        function navigateTo(section) {{
+        function navigateTo(section, evt) {{
             // Update active nav item
             document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-            event.target.classList.add('active');
+            if (evt && evt.target) {{
+                evt.target.classList.add('active');
+            }} else {{
+                // For hash navigation, find and activate the nav item
+                document.querySelectorAll('.nav-item').forEach(item => {{
+                    if (item.getAttribute('href') === '#' + section) {{
+                        item.classList.add('active');
+                    }}
+                }});
+            }}
             
             // Show section
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
@@ -1230,7 +1239,7 @@ class OutputGenerator:
             if (hash) {{
                 const section = document.getElementById(hash);
                 if (section) {{
-                    navigateTo(hash);
+                    navigateTo(hash, null);
                 }}
             }}
         }}
@@ -1245,19 +1254,35 @@ class OutputGenerator:
         }}
         
         // Timeline filter
-        function filterTimeline(period) {{
-            // This would filter timeline data based on period
-            // For now, just visual feedback
-            event.target.parentElement.querySelectorAll('.btn').forEach(b => b.classList.remove('btn-primary'));
-            event.target.parentElement.querySelectorAll('.btn').forEach(b => b.classList.add('btn-secondary'));
-            event.target.classList.remove('btn-secondary');
-            event.target.classList.add('btn-primary');
+        function filterTimeline(period, evt) {{
+            // Visual feedback
+            if (evt && evt.target) {{
+                evt.target.parentElement.querySelectorAll('.btn').forEach(b => {{
+                    b.classList.remove('btn-primary');
+                    b.classList.add('btn-secondary');
+                }});
+                evt.target.classList.remove('btn-secondary');
+                evt.target.classList.add('btn-primary');
+            }}
+            
+            // Note: Actual filtering would require re-rendering the chart with filtered data
+            // For this implementation, we show all data (static report)
+            console.log('Timeline filter:', period);
         }}
         
         // Severity filter
         function filterSeverity() {{
-            // Filter severity table based on checkboxes
-            // Implementation would filter DataTable rows
+            // Get checked severities
+            const checkboxes = document.querySelectorAll('.filter-options input[type="checkbox"]');
+            const checked = Array.from(checkboxes).filter(cb => cb.checked).map(cb => cb.parentElement.textContent.trim());
+            
+            // Filter severity table if DataTable is initialized
+            const table = $('#severityTable').DataTable();
+            if (table && checked.length > 0) {{
+                // Build regex for filtering
+                const pattern = checked.join('|');
+                table.column(0).search(pattern, true, false).draw();
+            }}
         }}
         
         // Copy report path
